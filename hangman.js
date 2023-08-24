@@ -14,7 +14,18 @@ const words = [
 	'game',
 	'programmer',
 	'application',
+	'feedback',
+	'career',
+	'challenge',
+	'solution',
+	'algorithm',
+	'function',
+	'bug',
+	'team',
+	'innovation',
+	'framework',
 ];
+
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const buttonsContainer = document.getElementById('buttons-container');
 const usedLettersContainer = document.getElementById('used-letters');
