@@ -7,37 +7,32 @@
 		<link rel="stylesheet" href="index.css" />
 	</head>
 	<body>
-		<h1>Hangman Game</h1>
+		<div class="hangman-game">Hangman Game</div>
 
-        <div id="word-container">
+		<div id="word-container">
+			<!-- The word will be displayed here -->
+		</div>
 
-            <!-- The word will be displayed here --> 
+		<div id="hangman-draw">
+			<canvas id="hangman-canvas" width="400" height="400"></canvas>
+		</div>
 
-        </div>
-
-        <div id="buttons-container">
-
-            <!-- Buttons for each letter of the alphabet will be generated here -->
-
-        </div>
+		<div id="buttons-container">
+			<!-- Buttons for each letter of the alphabet will be generated here -->
+		</div>
 
 		<div id="used-letters">
+			<p>Used Letters:</p>
+			<!-- Incorrect letters will be displayed here -->
+		</div>
 
-            Used letters:
+		<div id="attempts-remaining">
+			<p>Attempts remaining: 7</p>
 
-            <!-- Incorrect letters will be displayed here -->
+			<!-- Remaining attempts will be displayed here -->
+		</div>
 
-        </div>
-
-        <div id="attempts-remaining">
-
-            Attempts remaining: 7
-
-            <!-- Remaining attempts will be displayed here -->
-
-        </div>
-
-        <button id="restart-button">Restart Game</button>
+		<button id="restart-button">Restart Game</button>
 		<script src="hangman.js"></script>
 	</body>
 </html>
