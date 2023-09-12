@@ -1,62 +1,68 @@
 const words = [
-	'programming',
-	'javascript',
-	'development',
-	'guatemala',
-	'computer',
-	'technology',
-	'application',
-	'learning',
-	'project',
-	'student',
-	'code',
-	'web',
-	'game',
-	'programmer',
-	'application',
-	'feedback',
-	'career',
-	'challenge',
-	'solution',
-	'algorithm',
-	'function',
-	'bug',
-	'team',
-	'innovation',
-	'framework',
+  "programming",
+  "javascript",
+  "development",
+  "guatemala",
+  "computer",
+  "technology",
+  "application",
+  "learning",
+  "project",
+  "student",
+  "code",
+  "web",
+  "game",
+  "programmer",
+  "application",
+  "feedback",
+  "career",
+  "challenge",
+  "solution",
+  "algorithm",
+  "function",
+  "bug",
+  "team",
+  "innovation",
+  "framework",
 ];
 
-const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-const buttonsContainer = document.getElementById('buttons-container');
-const usedLettersContainer = document.getElementById('used-letters');
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+const buttonsContainer = document.getElementById("buttons-container");
+const usedLettersContainer = document.getElementById("used-letters");
 const attemptsRemainingContainer =
-	document.getElementById('attempts-remaining');
-const wordContainer = document.getElementById('word-container');
-const restartButton = document.getElementById('restart-button');
+  document.getElementById("attempts-remaining");
+const wordContainer = document.getElementById("word-container");
+const restartButton = document.getElementById("restart-button");
 const usedLetters = [];
 const maxAttempts = 7;
+<<<<<<< HEAD
 const span = document.createElement('span');
 const canvas = document.getElementById('hangman-canvas');
 const ctx = canvas.getContext('2d');
 
 span.textContent = 'RESTART';
+=======
+const span = document.createElement("span");
+span.textContent = "RESTART";
+>>>>>>> ace8c029ee7130db81e0e9734198aac56b0bf909
 let attemptsRemaining = maxAttempts;
 let selectedWord = selectRandomWord(words);
 let gameInProgress = false;
 
 function selectRandomWord(words) {
-	const filteredWords = words.filter((word) => word.length <= 15);
+  const filteredWords = words.filter((word) => word.length <= 15);
 
-	if (filteredWords.length === 0) {
-		// No words match the filter criteria
-		return '';
-	}
+  if (filteredWords.length === 0) {
+    // No words match the filter criteria
+    return "";
+  }
 
-	const randomIndex = Math.floor(Math.random() * filteredWords.length);
-	return filteredWords[randomIndex];
+  const randomIndex = Math.floor(Math.random() * filteredWords.length);
+  return filteredWords[randomIndex];
 }
 
 function generateLetterButtons() {
+<<<<<<< HEAD
 	for (let letter of alphabet) {
 		const button = document.createElement('button');
 		button.textContent = letter;
@@ -69,29 +75,44 @@ function generateLetterButtons() {
 		restartButton.innerHTML =
 			'<span class="buttonrestartspan">' + 'RESTART' + '</span>';
 	}
+=======
+  for (let letter of alphabet) {
+    const button = document.createElement("button");
+    button.textContent = letter;
+    button.className = "btnletter";
+    buttonsContainer.appendChild(button);
+
+    button.addEventListener("click", () => handleLetterClick(letter));
+
+    restartButton.className = "buttonrestart";
+    restartButton.innerHTML =
+      '<span class="buttonrestartspan">' + "RESTART" + "</span>";
+  }
+>>>>>>> ace8c029ee7130db81e0e9734198aac56b0bf909
 }
 
 function handleLetterClick(letter) {
-	if (!gameInProgress) {
-		return;
-	}
+  if (!gameInProgress) {
+    return;
+  }
 
-	if (usedLetters.includes(letter)) {
-		return;
-	}
+  if (usedLetters.includes(letter)) {
+    return;
+  }
 
-	usedLetters.push(letter);
-	updateUsedLetters();
+  usedLetters.push(letter);
+  updateUsedLetters();
 
-	if (selectedWord.includes(letter)) {
-		updateWordDisplay();
-	} else {
-		attemptsRemaining--;
-		updateAttemptsRemaining();
-	}
+  if (selectedWord.includes(letter)) {
+    updateWordDisplay();
+  } else {
+    attemptsRemaining--;
+    updateAttemptsRemaining();
+  }
 
-	checkGameStatus();
+  checkGameStatus();
 
+<<<<<<< HEAD
 	if (!wordContainer.textContent.includes('_')) {
 		endGame(true);
 	}
@@ -293,3 +314,80 @@ function Hangman() {
 }
 
 Hangman();
+=======
+  if (!wordContainer.textContent.includes("_")) {
+    endGame(true);
+  }
+}
+
+function updateUsedLetters() {
+  usedLettersContainer.textContent = `Used letters: ${usedLetters.join(", ")}`;
+}
+
+function updateAttemptsRemaining() {
+  attemptsRemainingContainer.textContent = `Attempts remaining: ${attemptsRemaining}`;
+}
+
+function updateWordDisplay() {
+  wordContainer.textContent = selectedWord
+    .split("")
+    .map((letter) => (usedLetters.includes(letter) ? letter : "_"))
+    .join(" ");
+}
+
+function checkGameStatus() {
+  if (attemptsRemaining === 0) {
+    endGame(false);
+  }
+}
+
+function enableLetterButtons() {
+  buttonsContainer.querySelectorAll("button").forEach((button) => {
+    button.disabled = false;
+  });
+}
+
+function endGame(playerWon) {
+  if (playerWon) {
+    wordContainer.textContent = "Congratulations, you won!";
+  } else {
+    wordContainer.textContent = `Game over! The correct word was: ${selectedWord}`;
+  }
+
+  disableLetterButtons();
+
+  restartButton.disabled = true;
+
+  gameInProgress = false;
+}
+
+function restartGame() {
+  usedLetters.length = 0;
+
+  attemptsRemaining = maxAttempts;
+
+  selectedWord = selectRandomWord(words);
+
+  updateUsedLetters();
+
+  updateAttemptsRemaining();
+
+  updateWordDisplay();
+
+  wordContainer.textContent = "";
+
+  enableLetterButtons();
+
+  gameInProgress = true;
+}
+
+function initializeGame() {
+  generateLetterButtons();
+
+  restartGame();
+}
+
+restartButton.addEventListener("click", restartGame);
+
+initializeGame();
+>>>>>>> ace8c029ee7130db81e0e9734198aac56b0bf909
