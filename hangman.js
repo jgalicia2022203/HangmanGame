@@ -269,7 +269,6 @@ function drawHangman(ctx) {
     }
   }
 }
-
 function Hangman() {
   ctx.beginPath();
 
